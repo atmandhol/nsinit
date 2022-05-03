@@ -22,11 +22,25 @@ rules:
 kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: default-ns-role-binding
+  name: default-ns-sa-role-binding
   namespace: nsinit
 subjects:
 - kind: ServiceAccount
   name: default-ns-sa
+  namespace: nsinit
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: default-ns-role
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: default-role-binding
+  namespace: nsinit
+subjects:
+- kind: ServiceAccount
+  name: default
   namespace: nsinit
 roleRef:
   apiGroup: rbac.authorization.k8s.io

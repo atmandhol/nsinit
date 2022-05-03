@@ -11,7 +11,9 @@ kapp deploy -a kc -f https://github.com/vmware-tanzu/carvel-kapp-controller/rele
 ```
 Install package repo and package
 ```bash
-kapp deploy -a nsinit -f install.yml -y
+kubectl apply -f pkg/install/default-rbac.yml
+kapp deploy -a nsinit-repo -f pkg/install/packagerepo.yml
+kapp deploy -a nsinit -f pkg/install/package.yml -y
 ```
 
 ### Packaging and releasing info

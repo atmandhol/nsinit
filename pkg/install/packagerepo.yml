@@ -6,4 +6,4 @@ metadata:
 spec:
   fetch:
     imgpkgBundle:
-      image: index.docker.io/adhol/packages@sha256:a834976534eba09ec57eb613d3f6caa3a13f0351dbae9feaba6733516c768782
+      image: index.docker.io/adhol/packages@sha256:ebbbb423d89e1feae000175e80e949fc33d3158e1699d47aceaf63964faf3ab0
