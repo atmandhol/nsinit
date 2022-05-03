@@ -1,9 +1,0 @@
----
-apiVersion: packaging.carvel.dev/v1alpha1
-kind: PackageRepository
-metadata:
-  name: nsinit
-spec:
-  fetch:
-    imgpkgBundle:
-      image: docker.io/adhol/nsinit:0.1.0

@@ -29,7 +29,7 @@ spec:
     spec:
       containers:
       - name: nsinit
-        image: docker.io/adhol/nsinit
+        image: docker.io/adhol/nsinit:0.1.0
         env:
         - name: NS_CREATE_ACTION
           value: #@ data.values.ns_create_action
