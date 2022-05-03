@@ -1,0 +1,26 @@
+---
+apiVersion: packaging.carvel.dev/v1alpha1
+kind: PackageInstall
+metadata:
+  name: nsinit-controller
+  namespace: nsinit
+spec:
+  serviceAccountName: default-ns-sa
+  packageRef:
+    refName: nsinit.adhol.io
+    versionSelection:
+      constraints: 0.1.0
+  values:
+  - secretRef:
+      name: nsinit-config
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: nsinit-config
+  namespace: nsinit
+stringData:
+  values.yml: |
+    ---
+    ns_create_action: 'print("Default ns_create_action invoked. But updated one")'
+    ns_update_action: 'print("Default ns_update_action invoked. But updated one")'

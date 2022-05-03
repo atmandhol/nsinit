@@ -1,0 +1,7 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: index.docker.io/adhol/packages@sha256:7b8c66fd708f0ed9864edb94de598850f4731c931d358b42ae3d1d9f2374a7ae
+  image: index.docker.io/adhol/packages@sha256:7b8c66fd708f0ed9864edb94de598850f4731c931d358b42ae3d1d9f2374a7ae
+kind: ImagesLock

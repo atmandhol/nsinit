@@ -7,5 +7,5 @@ images:
       - resolved:
           tag: 0.1.0
           url: docker.io/adhol/nsinit:0.1.0
-  image: index.docker.io/adhol/nsinit@sha256:b3e47fddb1e757483b902d092653f094e031e857adc1cc9fd300748f604b4de0
+  image: index.docker.io/adhol/nsinit@sha256:ff7d9a38f677a132a57ccfbbec2c08ead11438bdc7fd8ec8f958f6bbd828c7cc
 kind: ImagesLock

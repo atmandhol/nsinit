@@ -8,15 +8,13 @@ metadata:
 spec:
   refName: nsinit.adhol.io
   version: #@ data.values.version
-  releaseNotes: |
-        Initial release of the nsinit package
   valuesSchema:
     openAPIv3: #@ yaml.decode(data.values.openapi)["components"]["schemas"]["dataValues"]
   template:
     spec:
       fetch:
       - imgpkgBundle:
-          image: #@ "docker.io/adhol/nsinit:" + data.values.version
+          image: #@ data.values.image
       template:
       - ytt:
           paths:

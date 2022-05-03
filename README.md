@@ -16,23 +16,23 @@ kapp deploy -a nsinit -f install.yml -y
 
 ### Packaging and releasing info
 
-To push the version bundle:
-- Do a Docker build and push the image to Dockerhub.
+To publish:
 - Change the image version in package-contents/config/config.yaml file to point to the right base image.
 - Run these commands.
 ```bash
-kbld -f package-contents/config/ --imgpkg-lock-output package-contents/.imgpkg/images.yml
-imgpkg push -b docker.io/adhol/nsinit:${VERSION} -f package-contents/
-```
-Create a package entry in the repo bundle
-```bash
-ytt -f templates/package-template.yml  --data-value-file openapi=templates/schema-openapi.yml -v version="${VERSION}" > my-pkg-repo/packages/nsinit.adhol.io/${VERSION}.yml
-cp templates/metadata.yml my-pkg-repo/packages/nsinit.adhol.io
-```
-Push the repo bundle
-```bash
-kbld -f my-pkg-repo/packages/ --imgpkg-lock-output my-pkg-repo/.imgpkg/images.yml
-imgpkg push -b docker.io/adhol/nsinit:${VERSION} -f my-pkg-repo
+export VERSION=0.1.0
+export IMAGE_REPO=adhol/nsinit
+export BUNDLE_REPO=adhol/packages
+
+docker build -t adhol/nsinit .
+docker tag ${IMAGE_REPO}:latest ${IMAGE_REPO}:${VERSION}
+docker push ${IMAGE_REPO}:${VERSION}
+
+kbld -f pkg/contents/config/ --imgpkg-lock-output pkg/contents/.imgpkg/images.yml
+ytt -f pkg/templates/package-template.yml --data-value-file openapi=pkg/templates/schema-openapi.yml -v version="${VERSION}" -v image=$(imgpkg push -b docker.io/${BUNDLE_REPO}:${VERSION} -f pkg/contents/ --json -y | jq '.Lines[-2]' | jq -r '.[8:-1]') > pkg/repo/packages/nsinit.adhol.io/${VERSION}.yml
+cp pkg/templates/metadata.yml pkg/repo/packages/nsinit.adhol.io
+kbld -f pkg/repo/packages/ --imgpkg-lock-output pkg/repo/.imgpkg/images.yml
+imgpkg push -b docker.io/${BUNDLE_REPO}:${VERSION} -f pkg/repo
 ```
 
 ### Starlark Reference
