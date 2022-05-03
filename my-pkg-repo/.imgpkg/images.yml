@@ -1,0 +1,11 @@
+---
+apiVersion: imgpkg.carvel.dev/v1alpha1
+images:
+- annotations:
+    kbld.carvel.dev/id: docker.io/adhol/nsinit:0.1.0
+    kbld.carvel.dev/origins: |
+      - resolved:
+          tag: 0.1.0
+          url: docker.io/adhol/nsinit:0.1.0
+  image: index.docker.io/adhol/nsinit@sha256:0feae8c422b1c3b8a772bc9771d0f87ce7a0ca38387646d8e642de9a564ee540
+kind: ImagesLock

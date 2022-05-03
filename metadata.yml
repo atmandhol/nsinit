@@ -1,0 +1,8 @@
+apiVersion: data.packaging.carvel.dev/v1alpha1
+kind: PackageMetadata
+metadata:
+  name: nsinit.adhol.io
+spec:
+  displayName: "nsinit"
+  longDescription: "Controller that initializes the namespace as per the instructions provided in the config map"
+  shortDescription: "Namespace initializer"

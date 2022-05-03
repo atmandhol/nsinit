@@ -1,0 +1,10 @@
+#@data/values-schema
+---
+#@schema/desc "Port number for the service."
+svc_port: 80
+#@schema/desc "Target port for the application."
+app_port: 80
+#@schema/desc "Starlark script used when namespace is created"
+ns_create_action: 'print("Default ns_create_action invoked")'
+#@schema/desc "Starlark script used when namespace is updated"
+ns_update_action: 'print("Default ns_update_action invoked")'

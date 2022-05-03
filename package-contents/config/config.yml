@@ -1,0 +1,37 @@
+#@ load("@ytt:data", "data")
+
+#@ def labels():
+nsinit: "The namespace initializer"
+#@ end
+---
+apiVersion: v1
+kind: Service
+metadata:
+  namespace: nsinit
+  name: nsinit
+spec:
+  ports:
+  - port: #@ data.values.svc_port
+    targetPort: #@ data.values.app_port
+  selector: #@ labels()
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  namespace: nsinit
+  name: nsinit
+spec:
+  selector:
+    matchLabels: #@ labels()
+  template:
+    metadata:
+      labels: #@ labels()
+    spec:
+      containers:
+      - name: nsinit
+        image: docker.io/adhol/nsinit
+        env:
+        - name: NS_CREATE_ACTION
+          value: #@ data.values.ns_create_action
+        - name: NS_UPDATE_ACTION
+          value: #@ data.values.ns_update_action
